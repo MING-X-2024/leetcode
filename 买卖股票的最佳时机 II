@@ -1,0 +1,23 @@
+public class Solution {
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length <= 1) {
+            return 0;
+        }
+
+        int n = prices.length;
+        // 定义持有股票时的最大利润
+        int hold = -prices[0];
+        // 定义不持有股票时的最大利润
+        int cash = 0;
+
+        for (int i = 1; i < n; i++) {
+            int prevHold = hold;
+            // 对于第i天，我们可以选择保持前一天的持有状态，或者是前一天不持有状态然后在第i天买入
+            hold = Math.max(prevHold, cash - prices[i]);
+            // 对于第i天，我们可以选择保持前一天的不持有状态，或者是前一天持有状态然后在第i天卖出
+            cash = Math.max(cash, prevHold + prices[i]);
+        }
+
+        return cash;}
+        }
+    
