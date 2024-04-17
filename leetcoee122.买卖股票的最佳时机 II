@@ -21,3 +21,31 @@ public class Solution {
         return cash;}
         }
     
+
+
+//
+这段代码实现了一个 Java 类 Solution，其中包含了一个方法 maxProfit，用于计算股票交易的最大利润。下面是代码的详细解释：
+
+public int maxProfit(int[] prices) { ... }：这是一个公共方法 maxProfit，它接受一个整数数组 prices 作为输入参数，并返回一个整数值，表示最大利润。
+
+if (prices == null || prices.length <= 1) { return 0; }：这段代码首先检查输入数组 prices 是否为 null 或长度是否小于等于1，如果是，则直接返回0，因为在这种情况下无法进行交易。
+
+int n = prices.length;：获取输入数组 prices 的长度，以便后续循环使用。
+
+int hold = -prices[0];：定义一个变量 hold，用于表示持有股票时的最大利润。初始化为第一天股票价格的相反数，表示在第一天购买了股票。
+
+int cash = 0;：定义一个变量 cash，用于表示不持有股票时的最大利润。初始化为0，表示在第一天不持有股票。
+
+for (int i = 1; i < n; i++) { ... }：循环遍历数组 prices，从第二天开始到最后一天。
+
+int prevHold = hold;：在每一轮循环中，记录上一轮的持有股票的最大利润。
+
+hold = Math.max(prevHold, cash - prices[i]);：更新持有股票时的最大利润 hold，这里有两种选择：要么保持前一天的持有状态，要么是前一天不持有状态然后在第 i 天买入。取两者之间的较大值。
+
+cash = Math.max(cash, prevHold + prices[i]);：更新不持有股票时的最大利润 cash，同样有两种选择：要么保持前一天的不持有状态，要么是前一天持有状态然后在第 i 天卖出。取两者之间的较大值。
+
+return cash;：最终返回 cash，表示在最后一天不持有股票时的最大利润。
+
+这个算法的思想是利用动态规划，通过不断更新持有和不持有股票时的最大利润来求解问题，最终返回在最后一天不持有股票时的最大利润。
+
+//
