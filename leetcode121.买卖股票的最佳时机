@@ -1,0 +1,41 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        
+        int maxProfit = 0;
+        int minPrice = prices[0];
+        
+        for (int i = 1; i < prices.length; i++) {
+            // 更新最低买入价格
+            minPrice = Math.min(minPrice, prices[i]);
+            // 计算以当前价格卖出时的利润，并更新最大利润
+            maxProfit = Math.max(maxProfit, prices[i] - minPrice);
+        }
+        
+        return maxProfit;
+    }
+}
+
+//
+这段代码实现了一个 Java 类 Solution，其中包含了一个方法 maxProfit，用于计算股票交易的最大利润。下面是代码的详细解释：
+
+public int maxProfit(int[] prices) { ... }：这是一个公共方法 maxProfit，它接受一个整数数组 prices 作为输入参数，并返回一个整数值，表示最大利润。
+
+if (prices == null || prices.length == 0) { return 0; }：这段代码首先检查输入数组 prices 是否为 null 或长度是否为0，如果是，则直接返回0，因为在这种情况下无法进行交易。
+
+int maxProfit = 0;：初始化最大利润为0，表示初始状态下没有利润。
+
+int minPrice = prices[0];：初始化最低买入价格为数组的第一个元素，表示第一天的股票价格。
+
+for (int i = 1; i < prices.length; i++) { ... }：循环遍历数组 prices，从第二天开始到最后一天。
+
+minPrice = Math.min(minPrice, prices[i]);：在每一轮循环中，更新最低买入价格 minPrice，将当前股票价格与之前记录的最低买入价格比较，取较小值。
+
+maxProfit = Math.max(maxProfit, prices[i] - minPrice);：计算以当前价格卖出时的利润，并更新最大利润 maxProfit。利润等于当前价格减去最低买入价格，取其与之前记录的最大利润的较大值。
+
+return maxProfit;：最终返回 maxProfit，表示在最后一天卖出股票时的最大利润。
+
+这个算法的思想是维护一个最低买入价格，并不断更新以当前价格卖出时的利润，最终返回最大利润。
+//
