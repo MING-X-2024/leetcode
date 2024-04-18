@@ -1,0 +1,35 @@
+public class Solution {
+    public boolean canJump(int[] nums) {
+        int maxReachable = 0; // 初始化你能到达的最远索引
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (i > maxReachable) {
+                return false; // 如果当前索引无法到达，则返回 false
+            }
+            maxReachable = Math.max(maxReachable, i + nums[i]); // 更新 maxReachable
+        }
+        
+        return maxReachable >= nums.length - 1; // 检查是否能到达最后一个索引
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        
+        int[] nums1 = {2, 3, 1, 1, 4};
+        System.out.println(solution.canJump(nums1)); // 输出：true
+        
+        int[] nums2 = {3, 2, 1, 0, 4};
+        System.out.println(solution.canJump(nums2)); // 输出：false
+    }
+}
+
+
+这段代码实现了一个函数 canJump，用于判断给定的整数数组 nums 是否能够到达数组的最后一个索引。下面是对代码的解释：
+
+public boolean canJump(int[] nums): 这是一个公有方法，它接受一个整数数组 nums 作为参数，并返回一个布尔值，表示是否能够到达数组的最后一个索引。
+int maxReachable = 0;: 这一行声明了一个变量 maxReachable，用于记录当前位置能够到达的最远的索引位置。初始化为0，表示初始位置为数组的第一个索引。
+for (int i = 0; i < nums.length; i++) {: 这是一个 for 循环，遍历整个数组 nums。
+if (i > maxReachable) { return false; }: 这个条件判断语句用于检查当前索引位置 i 是否已经超出了最远可达到的索引位置 maxReachable。如果超出，则说明无法到达当前位置，直接返回 false。
+maxReachable = Math.max(maxReachable, i + nums[i]);: 这一行更新了 maxReachable 的值，使其表示当前位置能够到达的最远的索引位置。通过 Math.max 方法比较当前的 maxReachable 和 i + nums[i]，取较大的值作为新的 maxReachable。
+return maxReachable >= nums.length - 1;: 最后，这一行判断是否能够到达数组的最后一个索引位置。如果 maxReachable 大于等于 nums.length - 1，则说明能够到达最后一个索引位置，返回 true；否则返回 false。
+在 main 方法中，展示了两个示例的调用和输出结果。
